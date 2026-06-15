@@ -1,23 +1,872 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <!-- Schema.org Structured Data for SEO Snippet Enhancement -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "자기차량손해 자차보험료 비교견적 서비스",
+      "provider": {
+        "@type": "Organization",
+        "name": "자차보험료 비교분석센터",
+        "url": "https://yourdomain.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-10-1234-5678",
+          "contactType": "고객 서비스"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "description": "2026년 최신 자기차량손해(자차) 보험료 평균 비용 계산 및 할인 특약 비교 가이드",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "자차보험료 상품 비교 목록",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "다이렉트 자차보험료 비교견적"
+            },
+            "description": "주요 보험사별 자기부담금 비율에 따른 자차보험료 예상 금액 산출 서비스"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "AI 기반 자차보험 할인 설계 상담"
+            },
+            "description": "챗지피티 및 제미나이 인공지능 분석을 접목한 맞춤형 할인 혜택 매칭"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: #f8fafc;
+        color: #1e293b;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1e3a8a, #0f172a);
+        color: white;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        letter-spacing: -0.05em;
+      }
+
+      header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 800px;
+        margin: 0 auto 1.5rem auto;
+      }
+
+      nav {
+        margin-top: 1.5rem;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: #93c5fd;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+        padding: 0.3rem 0.6rem;
+      }
+
+      nav a:hover {
+        color: #ffffff;
+      }
+
+      main {
+        max-width: 1080px;
+        margin: 2.5rem auto;
+        padding: 2.5rem;
+        background-color: #ffffff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        border-radius: 16px;
+      }
+
+      section {
+        margin-bottom: 4rem;
+      }
+
+      h2 {
+        color: #1e3a8a;
+        font-size: 1.8rem;
+        border-left: 6px solid #2563eb;
+        padding-left: 1rem;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+      }
+
+      h3 {
+        font-size: 1.35rem;
+        margin-top: 2rem;
+        color: #1d4ed8;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: #334155;
+        text-align: justify;
+      }
+
+      strong {
+        color: #0f172a;
+        font-weight: 700;
+      }
+
+      ul {
+        margin-bottom: 1.5rem;
+        padding-left: 1.2rem;
+        list-style: none;
+      }
+
+      ul li {
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 1rem;
+      }
+
+      ul li::before {
+        content: "•";
+        color: #2563eb;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      .keyword-tags {
+        margin: 2rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .keyword-tags a {
+        background-color: #f1f5f9;
+        color: #475569;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+      }
+
+      .keyword-tags a:hover {
+        background-color: #2563eb;
+        color: #ffffff;
+        border-color: #2563eb;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      th, td {
+        padding: 1.1rem;
+        border: 1px solid #e2e8f0;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+
+      th {
+        background-color: #f8fafc;
+        color: #1e3a8a;
+        font-weight: 700;
+      }
+
+      .calculator-container {
+        background-color: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        padding: 2.5rem;
+        border-radius: 12px;
+        margin: 3rem 0;
+      }
+
+      .calculator-container h3 {
+        color: #166534;
+        border-bottom: 2px solid #bbf7d0;
+        margin-top: 0;
+      }
+
+      .calc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .calc-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .calc-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .calc-group label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #374151;
+      }
+
+      .calc-group select, .calc-group input {
+        padding: 0.75rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 1rem;
+        background-color: #ffffff;
+      }
+
+      .calc-checkboxes {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .calc-checkboxes label {
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .calc-btn {
+        background-color: #16a34a;
+        color: white;
+        font-weight: 700;
+        padding: 1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1.1rem;
+        transition: background-color 0.2s ease;
+      }
+
+      .calc-btn:hover {
+        background-color: #15803d;
+      }
+
+      .calc-result {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: #ffffff;
+        border-radius: 8px;
+        border: 2px dashed #86efac;
+        display: none;
+      }
+
+      .calc-result h4 {
+        margin-top: 0;
+        color: #166534;
+        font-size: 1.2rem;
+      }
+
+      .calc-res-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #15803d;
+        margin: 0.5rem 0;
+      }
+
+      .cta-button {
+        display: block;
+        background-color: #2563eb;
+        color: white;
+        font-weight: 700;
+        padding: 1.2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        margin: 2.5rem 0;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #1d4ed8;
+      }
+
+      .highlight {
+        color: #2563eb;
+        font-weight: 700;
+      }
+
+      .sub-section {
+        margin-top: 2rem;
+        padding: 2rem;
+        background-color: #f8fafc;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .contact-form {
+        margin-top: 3rem;
+        background-color: #f1f5f9;
+        padding: 2.5rem;
+        border-radius: 12px;
+        border: 1px solid #cbd5e1;
+      }
+
+      .contact-form h3 {
+        margin-top: 0;
+        color: #0f172a;
+        border-bottom: 2px solid #cbd5e1;
+      }
+
+      .contact-form label {
+        display: block;
+        font-weight: 600;
+        margin-top: 1.2rem;
+        margin-bottom: 0.4rem;
+        color: #334155;
+      }
+
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form select,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        background-color: #ffffff;
+      }
+
+      .contact-form input:focus,
+      .contact-form select:focus,
+      .contact-form textarea:focus {
+        border-color: #2563eb;
+        outline: none;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .form-consent {
+        margin-top: 1.2rem;
+        font-size: 0.85rem;
+        color: #64748b;
+      }
+
+      .form-consent input {
+        margin-right: 0.5rem;
+      }
+
+      .contact-form button {
+        background-color: #2563eb;
+        color: white;
+        padding: 1.2rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 1.5rem;
+        transition: background-color 0.2s ease;
+      }
+
+      .contact-form button:hover {
+        background-color: #1d4ed8;
+      }
+
+      footer {
+        text-align: center;
+        padding: 3rem 1.5rem;
+        font-size: 0.9rem;
+        color: #64748b;
+        background-color: #0f172a;
+        margin-top: 4rem;
+      }
+
+      footer a {
+        color: #38bdf8;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .accordion dt {
+        font-weight: 700;
+        margin-top: 1.2rem;
+        cursor: pointer;
+        color: #1e3a8a;
+        padding: 1.2rem;
+        background-color: #f1f5f9;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+        border-left: 4px solid #2563eb;
+      }
+
+      .accordion dt:hover {
+        background-color: #e2e8f0;
+      }
+
+      .accordion dd {
+        margin-left: 0;
+        padding: 1.2rem;
+        margin-bottom: 1.5rem;
+        display: none;
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-top: none;
+        border-radius: 0 0 8px 8px;
+      }
+
+      .accordion dt.active + dd {
+        display: block;
+      }
+
+      .outlinks {
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-top: 3rem;
+      }
+
+      .outlinks h4 {
+        margin-top: 0;
+        color: #475569;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .outlinks ul {
+        margin: 0;
+        padding-left: 1.2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+
+      @media (max-width: 600px) {
+        .outlinks ul {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .outlinks a {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+
+      .outlinks a:hover {
+        text-decoration: underline;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>자기차량손해 자차보험료 계산기 - 2026년 평균 가격 및 비교견적</h1>
+        <p>어렵고 복잡한 자기차량손해 담보의 모든 것. 나에게 가장 최적화된 조건과 저렴한곳을 찾아 합리적으로 가입하는 핵심 정보 공유센터입니다.</p>
+        <nav>
+            <ul>
+                <li><a href="#intro">자차란 무엇인가</a></li>
+                <li><a href="#premium-factors">보험료 결정 요인</a></li>
+                <li><a href="#calculator">실시간 모의 계산기</a></li>
+                <li><a href="#deductible-guide">자기부담금 설정 노하우</a></li>
+                <li><a href="#review-analysis">커뮤니티 내돈내산 분석</a></li>
+                <li><a href="#request-form">비교견적 신청</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="intro">
+            <h2>자차보험료, 2026년 가입 전 반드시 알아야 할 본질</h2>
+            <p>자동차 가입 시 가장 큰 비중을 차지하는 항목은 단연 자기차량손해 담보, 즉 <strong>자차보험료</strong>입니다. 이는 사고가 발생했을 때 상대방 차량이나 인명에 대한 피해뿐만 아니라 본인의 차량이 입은 손상에 대해서도 보상을 책임지는 중요한 축을 이룹니다. 하지만 2026년 기준 손해보험업계의 손해율 악화와 고유가, 원자재 가격 상승 등의 대내외적 요인으로 인하여 보험료 수준이 상향 평준화되는 흐름입니다. 이 때문에 많은 운전자가 종합적인 견적 금액을 마주하고 상당한 부담감을 느끼고 있습니다.</p>
+            
+            <p>기본적으로 자차 담보는 의무 가입은 아닙니다. 그러나 단독 사고나 태풍 및 침수와 같은 기상재해, 그리고 원인 미상의 주차 뺑소니(물피도주) 등 실생활에서 흔하게 발생하는 예기치 못한 금전적 타격을 차단해 주기 때문에 신규 차주나 수입차 오너들에게는 필수에 가깝게 권장됩니다. 이 가이드에서는 <strong>자차보험료</strong>가 정확히 얼마 수준으로 산출되는지, 그리고 개인의 조건에 비추어 예상되는 평균 비용을 정밀하게 줄이는 노하우를 상세히 조명합니다.</p>
+
+            <div class="keyword-tags">
+                <a href="#calculator">자차보험료 계산기</a>
+                <a href="#deductible-guide">자기부담금 20% 30% 차이점</a>
+                <a href="#request-form">다이렉트 자동차보험 저렴한곳</a>
+                <a href="#review-analysis">보배드림 내돈내산 가입후기</a>
+                <a href="#premium-factors">차량가액 조회 및 감가상각</a>
+                <a href="#discount-info">안전장치 마일리지 할인 특약</a>
+                <a href="#faq">경미 사고 자차처리 유불리</a>
+                <a href="#review-analysis">에펨코리아 보험 꿀팁 순위</a>
+            </div>
+        </section>
+
+        <section id="premium-factors">
+            <h2>자차보험료 가격 형성과 평균 결정 요인</h2>
+            <p>운전자가 매년 지출하게 되는 자차보험료는 대략 얼마 정도가 평균일까요? 일반적으로 소형 및 준중형 국산 차량의 자차 담보 비용은 연간 대략 15만 원에서 30만 원 사이를 오가며, 대형 및 고가 수입 차량이나 신규 전기차 모델은 80만 원에서 150만 원 이상을 호가하는 등 차이가 상당합니다. 그렇다면 이러한 가격 격차가 벌어지는 원리는 무엇일까요?</p>
+
+            <h3>1. 차량 가액과 연식의 상관관계</h3>
+            <p>자차보험은 기본적으로 사고가 난 시점의 차량 가치를 기준으로 한도가 결정됩니다. 이를 차량 가액이라고 부릅니다. 신차일 때는 당연히 차량 가격이 높기 때문에 자차 비용이 아주 높게 매겨집니다. 연수가 흐를수록 차량 가치는 서서히 떨어지는 감가상각을 거치며, 그 결과 가치 하락과 정비 비례 비용 조정에 힘입어 점차적으로 해당 항목의 단가가 하락하는 경향을 보입니다. 다만, 단종된 희귀 모델이나 프리미엄 수입차의 경우 부품 공급 부족으로 인해 가액 감소폭 대비 보험 요율 등급이 매우 낮게 잡혀 보험료가 높게 유지되기도 합니다.</p>
+
+            <h3>2. 사고 이력과 가입자의 할인 할증 등급</h3>
+            <p>보험개발원에서 매년 갱신하는 1등급부터 29등급까지의 평가 지표는 매우 절대적입니다. 무사고 연수가 길수록 할인을 많이 받는 우량 등급으로 진입하여 자차 영역뿐만 아니라 대인 대물 책임보험료까지 함께 대폭 낮아집니다. 반면, 최근 3년 내 단독 자차 처리 건수가 빈번하거나 물적 사고 할증 기준 한도(통상 200만 원)를 초과하여 청구한 이력이 있다면 등급이 낮아져 다음 갱신 때 감당하기 힘든 할증 고지서를 받게 됩니다.</p>
+
+            <h3>3. 수리 및 정비 공임 지표</h3>
+            <p>보험사는 수리 시 적용되는 부품 단가와 공임 단가에 지대한 영향을 받습니다. 2026년 기준 전기 차량의 보급 확대로 인해 대형 배터리 팩 손상 건이 증가하면서 수리비 인상 폭이 커졌고, 이는 고스란히 전체 평균 가격 상승을 부채질하고 있습니다. 수입 브랜드 역시 국내 정식 수리 업체 네트워크를 이용할 때 정비 대기 비용과 정밀 센서(ADAS 등) 수급비가 비싸기 때문에 동일 가액의 국산 차량보다 더 많은 자차 비용이 청구되는 원인이 됩니다.</p>
+        </section>
+
+        <section id="calculator">
+            <div class="calculator-container">
+                <h3>실시간 자차보험료 모의 계산기 (2026년 간이 버전)</h3>
+                <p>본인의 대략적인 조건들을 기반으로 예상되는 연간 자차 담보 비용을 즉석에서 검토해 볼 수 있는 모의 산출기입니다. 차량 정보와 나이 조건을 지정하고 계산하기 버튼을 눌러보세요.</p>
+                
+                <div class="calc-grid">
+                    <div class="calc-group">
+                        <label for="calc_car_type">차량 분류 선택</label>
+                        <select id="calc_car_type">
+                            <option value="compact">경형 / 소형 승용차 (아반떼, 모닝 등)</option>
+                            <option value="midsize">중형 / 준대형 세단 (쏘나타, 그랜저 등)</option>
+                            <option value="luxury">고급 세단 / 대형 SUV (제네시스 G80, 팰리세이드 등)</option>
+                            <option value="ev">친환경 전기차 (아이오닉, EV 시리즈 등)</option>
+                            <option value="import">수입 차량 (벤츠 E클래스, BMW 5시리즈 등)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="calc-group">
+                        <label for="calc_car_value">현재 예상 차량 가액 (단위: 만 원)</label>
+                        <input type="number" id="calc_car_value" placeholder="예: 3000" value="2500">
+                    </div>
+                    
+                    <div class="calc-group">
+                        <label for="calc_age">운전자 연령 조건</label>
+                        <select id="calc_age">
+                            <option value="20s">만 21세 이상 ~ 만 26세 미만</option>
+                            <option value="30s">만 30세 이상 (가장 일반적인 연령 범위)</option>
+                            <option value="40s">만 43세 이상 ~ 만 55세 이하</option>
+                            <option value="60s">만 65세 이상 실버 운전자</option>
+                        </select>
+                    </div>
+
+                    <div class="calc-group">
+                        <label for="calc_deductible">희망 자기부담금 비율</label>
+                        <select id="calc_deductible">
+                            <option value="20%">20% 비율형 (기본 옵션)</option>
+                            <option value="30%">30% 비율형 (보험료 절감 지향)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calc-group" style="margin-bottom: 1.5rem;">
+                    <label>적용 가능한 추가 할인 옵션</label>
+                    <div class="calc-checkboxes">
+                        <label><input type="checkbox" name="calc_safety" value="blackbox"> 차량용 블랙박스 상시 장착</label>
+                        <label><input type="checkbox" name="calc_safety" value="adas"> 차선이탈 및 전방추돌방지 시스템 적용</label>
+                        <label><input type="checkbox" name="calc_safety" value="mileage"> 연간 1만km 이하 마일리지 정산 운행</label>
+                    </div>
+                </div>
+
+                <button type="button" class="calc-btn" onclick="calculatePremium()">자차보험료 예상 견적 계산하기</button>
+
+                <div class="calc-result" id="calc_result_area">
+                    <h4>모의 분석 결과 보고</h4>
+                    <p>본인 맞춤형 자기차량손해 예상 부담 요금은 다음과 같습니다.</p>
+                    <div class="calc-res-value" id="calc_res_premium">0 원</div>
+                    <p id="calc_res_advice" style="font-size: 0.9rem; color: #4b5563; margin-top: 0.5rem;"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="deductible-guide">
+            <h2>자기부담금 20% vs 30% 설정의 명확한 차이점과 절약 원칙</h2>
+            <p>자차 처리 신청 시, 보험사가 피해 복구 금액을 무상으로 전액 처리해 주지는 않습니다. 도덕적 해이를 사전에 통제하고 경미한 자잘한 기스 정도는 개인 부담으로 해결하도록 유도하기 위한 정책적 장치로 바로 <strong>자기부담금</strong> 조항이 존재합니다. 이 비율을 선택함에 있어서 운전자들은 많은 고심을 겪습니다.</p>
+
+            <div class="sub-section">
+                <h3>대표적인 두 옵션의 상세 속성 대조표</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>설정 구분</th>
+                            <th>본인 수 수리비 분담율</th>
+                            <th>최소 납부 기준선 (면책금)</th>
+                            <th>최대 한도 상한선</th>
+                            <th>자차보험료 절감 효과</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>20% 부담형 (추천안)</strong></td>
+                            <td>총 청구 금액의 20%</td>
+                            <td>최저 20만 원 고정</td>
+                            <td>최대 50만 원 한계</td>
+                            <td>표준적인 기본 비용율 적용</td>
+                        </tr>
+                        <tr>
+                            <td><strong>30% 부담형 (실속안)</strong></td>
+                            <td>총 청구 금액의 30%</td>
+                            <td>최저 30만 원 고정</td>
+                            <td>최대 100만 원 한계</td>
+                            <td>자차 항목 최대 약 15% 추가 할인 적용</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>많은 분이 20%가 당연히 자기가 내는 돈이 적으니 완벽하게 유리할 것이라 착각하시곤 합니다. 하지만 연간 사고가 날 확률이 현저히 떨어지는 우량 무사고 가입자라면, 30% 부담형을 설정하여 기초적인 매월의 <strong>자차보험료</strong> 고정 지출 단가를 아끼는 방향이 훨씬 실속적일 수 있습니다. 본인의 운전 스타일과 무사고 가입 경력에 따른 위험 노출 수준을 저울질하여 이를 능동적으로 튜닝하는 지혜가 요구됩니다.</p>
+        </section>
+
+        <section id="review-analysis">
+            <h2>인터넷 커뮤니티 트렌드 및 내돈내산 여론 분석</h2>
+            <p>각종 자동차 정보의 허브이자 생생한 의견이 유통되는 대표적인 자동차 전문 포털 커뮤니티의 실상을 점검해 보았습니다. <strong>디시</strong>인사이드 차갤 및 <strong>보배드림</strong>, 그리고 에펨코리아(<strong>펨코</strong>, <strong>에펨코리아</strong>) 등의 자유게시판 및 질답 영역에서 자차보험료는 언제나 화두가 되는 단골 키워드입니다.</p>
+
+            <p>많은 베테랑 보배드림 유저들의 내돈내산 경험담과 후기를 정합해 본 결과, 연식 10년이 넘은 이른바 잔존가치 300만 원 이하의 똥차 혹은 중고 차량의 경우에는 자차 보장을 아예 빼고 책임 위주로 가입해 매달 굳어지는 요금을 주유비나 다른 소모품 정비로 충당하는 것이 현명하다는 조언이 설득력을 얻고 있습니다. 반면에 산 지 얼마 안 된 새 차 혹은 렌트 리스에서 인수받아 운행하는 신규 패밀리카의 경우는 단 1회의 접촉 사고로도 공임비가 백만 원 단위를 돌파하기 때문에 필수 동반 항목으로 꼽는 것이 현실적인 불문율입니다.</p>
+
+            <p>구체적으로 에펨코리아 유저들 사이에서 입소문을 타고 있는 자차 아끼는 법 요약본을 보면, 각종 포털 및 포인트를 연동하여 가입을 진행하는 우회 루트가 주로 권고됩니다. 매월 수많은 다이렉트 자사 채널에서 경쟁을 벌이기 때문에 <strong>네이버</strong>페이 경유 혜택을 비롯해 신세계 3만 원 <strong>상품권</strong> 기프티콘 증정 등 각종 이벤트와 프로모션을 엮으면 그 자체만으로도 실질 가입 부담을 상당히 상쇄할 수 있다는 평이 압도적입니다.</p>
+        </section>
+
+        <section id="discount-info">
+            <h2>자차 비용을 떨어뜨리는 전략적 핵심 우대 혜택 정보</h2>
+            <p>정해진 기준요율을 그냥 곧이곧대로 납부하는 것은 금전적인 낭비를 야기합니다. 각 전문 손해보험 법인들이 우량 고객 유치를 위해 제정한 할인 프로그램들을 하나하나 면밀히 비교해보는 노력이 절실합니다.</p>
+            <ul>
+                <li><strong>티맵 및 네비게이션 안전운전 스코어 연동:</strong> 가장 대표적인 주행 습관 데이터 추적(UBI) 할인입니다. 일정 키로수 이상 실시간 주행 이력을 유지하며 안전 점수 75점 혹은 80점 이상을 만족하면 약 11%의 파격적인 할인을 받습니다.</li>
+                <li><strong>커넥티드카 부가 안전 장치 등록:</strong> 현대 블루링크, 기아 커넥트와 전용 어플이 스마트하게 양방향 전산망으로 등록된 경우 차량가액 산출 단계에서 안전 우수 차주로 감안되어 특별 차감이 제공됩니다.</li>
+                <li><strong>대중교통 이용 실적에 따른 환급:</strong> 차량 보유는 하고 있으나 주중에는 지하철이나 광역 버스를 이용해 출퇴근하는 알뜰형 운전자라면 신용카드 실적과 크로스 체크하여 정산받는 특약을 장착할 수 있습니다.</li>
+                <li><strong>첨단 ADAS 장치 기본 탑재 인증:</strong> 공장에서 출고 시 탑재된 차선이탈방지 옵션이나 자율주행 보조 시스템의 정식 도면 등록에 따라 최대 5% 수준의 장치 할인이 매겨집니다.</li>
+            </ul>
+        </section>
+
+        <section id="ai-insurance">
+            <h2>AI와 인공지능 분석을 응용한 현대적 보험 진단 추세</h2>
+            <p>과거에는 설계사들의 일방적인 구두 제안이나 오프라인 가입 안내에만 온전히 매달릴 수밖에 없었으나, 현시대는 디지털 전환의 일환으로 인공지능 <strong>AI</strong> 도구를 누구나 손쉽게 활용해 보는 혁신을 겪고 있습니다. 운전자들은 요즘 <strong>챗지피티</strong>(<strong>ChatGPT</strong>) 혹은 <strong>제미나이</strong>(<strong>Gemini</strong>)와 같은 거대 지능 모델을 검색 도우미로 삼아 나만의 조건에 최적인 저렴한곳에 대한 정보수집 작업을 진행하는 경우가 점점 늘고 있습니다.</p>
+
+            <p>가령 본인의 실제 나이, 이전 사고 횟수, 수리 부품 성향을 챗지피티나 제미나이에 프롬프트로 기입하면 각 대행 전문 업체 및 손보사들이 제안하는 보장 약관의 허점과 자기부담금 변수를 논리적으로 정합하여 우선순위 일람표를 바로 도출해 줍니다. <strong>구글</strong>과 네이버에 난무하는 온갖 홍보성 게시글 틈바구니에서 기계적인 AI 분석을 활용하여 군더더기 없는 담보 기준만 알짜배기로 추출해 내는 것은 이제는 고수의 반열에 오른 똑똑한 운전자들의 기본 스킬셋이라 할 수 있습니다.</p>
+        </section>
+
+        <section id="request-form">
+            <div class="contact-form">
+                <h3>무료 실시간 자차보험료 최저가 비교견적 및 사은품 이벤트 신청</h3>
+                <p>본 양식을 성실히 작성해 주시면 검증된 다이렉트 가격 순위 정보와 제휴 주유 상품권, 카드 청구할인 현금지원 등 다양한 이벤트 혜택 적용 가능 여부를 전문적으로 분석하여 제공합니다.</p>
+                
+                <form action="#" method="post" onsubmit="event.preventDefault(); alert('견적 비교 신청이 안전하게 접수되었습니다. 담당 전문가가 곧 피드백을 전달해 드립니다.');">
+                    <div class="form-grid">
+                        <div>
+                            <label for="form_name">이름 (소유주 성명)</label>
+                            <input type="text" id="form_name" placeholder="홍길동" required>
+                        </div>
+                        <div>
+                            <label for="form_tel">긴급 연락처</label>
+                            <input type="text" id="form_tel" placeholder="010-1234-5678" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div>
+                            <label for="form_car">보유 또는 출고예정 차량명</label>
+                            <input type="text" id="form_car" placeholder="예: 쏘렌토 하이브리드, 테슬라 모델Y" required>
+                        </div>
+                        <div>
+                            <label for="form_insurance">현재 이용 중이거나 고려 중인 보험사</label>
+                            <select id="form_insurance">
+                                <option value="none">아직 미정 (신규 가입 예정)</option>
+                                <option value="samsung">삼성화재 다이렉트</option>
+                                <option value="db">DB손해보험 다이렉트</option>
+                                <option value="hyundai">현대해상 하이카</option>
+                                <option value="kb">KB손해보험 다이렉트</option>
+                                <option value="meritz">메리츠화재</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label for="form_message">특별 희망 요건 및 문의 사항 (예: 주유권 사은품 적용 문의, 캐시백 지원금 세부사항 궁금 등)</label>
+                    <textarea id="form_message" rows="4" placeholder="자세하게 남겨주실수록 개인 연령 조건에 따른 최저 요금 싼곳 순위와 상품 매칭 확률이 올라갑니다."></textarea>
+
+                    <div class="form-consent">
+                        <label>
+                            <input type="checkbox" required> 개인정보 수집 및 최저가 비교 산정을 위한 분석 조회 동의 (필수 항목)
+                        </label>
+                    </div>
+
+                    <button type="submit">인공지능 자차 견적 및 할인 분석 신청서 전송</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 및 상세 명쾌 답변 (FAQ)</h2>
+            <dl class="accordion">
+                <dt tabindex="0" aria-expanded="false">Q1: 주차장에 주차해 둔 내 차를 누군가 긁고 도망갔는데, 범인을 찾을 수 없습니다. 자차 처리하면 할증되나요?</dt>
+                <dd>A: 상대방을 식별할 수 없는 상황에서 혼자 자차 보장 처리를 진행하면 통상 가해자 불명 사고로 간주됩니다. 피해 보상 누적 금액이 물적 할증 한도 미만이고 무과실성을 입증할 수 있는 객관적인 정황 증거가 없다면, 즉시 요율 등급이 상승하지는 않더라도 대다수 보험사 규정상 향후 1년간 내지 3년간 무사고 할인 특약 적용 대상에서 탈락하는 불이익을 보게 됩니다. 따라서 수리비가 30만 원 미만의 경미한 판금 작업이라면 자비로 고치는 편이 오히려 더 저렴합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q2: 다이렉트 채널이 설계사 가입 채널보다 자차가 유난히 싼 이유는 정확히 무엇인가요?</dt>
+                <dd>A: 별도의 영업 수수료나 지점 유지 관리비, 설계사에게 매달 지급되어야 하는 판매 장려금 등의 무형 마진 요소가 원천 제거되었기 때문입니다. 동일한 회사(예: 삼성이나 DB 등)라 할지라도 웹 상에서 손수 정보를 수집하여 본인이 직접 옵션을 담아 가입하는 다이렉트 경로가 평균적으로 15%에서 20% 가까이 비용이 훨씬 저렴하게 산출됩니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q3: 차량 가액보다 훨씬 비싼 값비싼 오디오 시스템이나 고가 휠 튜닝을 했습니다. 자차 사고 시 보상받나요?</dt>
+                <dd>A: 보상받지 못하는 것이 원칙입니다. 자차는 오직 공장 출고 당시의 순정 기본 옵션 내역과 구조변경 정식 서류만 기준 삼아 계산됩니다. 추가 장착한 고가 부품을 사고 시에도 안전하게 한도로 보장받으려면, 사전에 보험사에 추가 장치품 증설을 수동으로 공식 통보하고 별도의 추가 인상 요율을 가산하여 약관에 등록해야만 차후 해당 부속까지 온전하게 전산 보장을 받으실 수 있습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q4: 홍수로 인한 대대적인 침수 피해가 발생해 차가 완전히 망가졌는데 전액 보장되나요?</dt>
+                <dd>A: 네, 기상 이변이나 태풍, 홍수 등으로 인한 주차구역 침수 등은 자차 담보가 가입되어 있다면 정상적으로 해당일자 기준의 차량가액 전액 한도로 전손 혹은 복구 비용이 지급됩니다. 다만, 이미 재난안전본부나 경찰이 진입을 전면 통제한 위험 침수 유발 도로에 강제로 차량을 몰아 억지로 들어가거나, 선루프나 차문을 인위적으로 완전히 열어놓은 고의적 과실이 수사 결과 확인되는 등 상식적인 선을 벗어난 부분은 면책 조항에 저촉되어 전액 보장이 거부될 수 있습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q5: 부모님 단독 밑으로 지정된 보험 명의 차량인데, 자녀인 제가 주말에 몰다가 차가 망가지면 어떻게 되나요?</dt>
+                <dd>A: 매우 흔하게 범하는 실책 중 하나입니다. 차량의 소유주 명의 및 피보험 계약이 부모님 단독 1인으로 굳어져 있는데 지정되지 않은 사람이 핸들을 잡고 주행하다 파손을 낼 경우, 상대방 피해에 관한 책임 한도는 법정 기본 배상이 적용될 여지가 있으나, 자기 차량의 손상을 상계해 주는 자차 보호 조항은 효력이 완전 상실됩니다. 자녀분이 종종 운전해야 한다면 임시적으로 며칠 전 미리 1일 혹은 가족 한정 원데이 상품 등으로 단기 지정 변경 조처를 완료해야 합니다.</dd>
+            </dl>
+        </section>
+
+        <section class="outlinks">
+            <h4>신뢰할 수 있는 공인 기관 및 참고 사이트 자료원</h4>
+            <p>더 상세하고 객관적인 공식 금융 제도를 면밀히 탐색하고 검토하고 싶다면 아래의 공인 신뢰 기관의 정식 문헌들을 활용해 보시기를 적극 추천합니다.</p>
+            <ul>
+                <li><a href="https://namu.wiki/w/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98" target="_blank" rel="noopener">나무위키 자동차보험 정의 및 세부 상세</a></li>
+                <li><a href="https://fine.fss.or.kr" target="_blank" rel="noopener">금융감독원 금융소비자정보포털 파인 공식 웹포털</a></li>
+                <li><a href="https://www.kidi.or.kr" target="_blank" rel="noopener">KIDI 보험개발원 차량 등급별 요율 공식 조회시스템</a></li>
+                <li><a href="https://www.gov.kr" target="_blank" rel="noopener">대한민국 행정안전부 정부24 공식 온라인 소통망</a></li>
+                <li><a href="https://www.koroad.or.kr" target="_blank" rel="noopener">KoRoad 도로교통공단 안전 가이드 및 교육 사이트</a></li>
+            </ul>
+        </section>
     </main>
-  </body>
-</html>
+  
+    <script>
+      // FAQ 아코디언 기능 (접기/펼치기)
+      document.querySelectorAll('dl.accordion dt').forEach((dt) => {
+        dt.addEventListener('click', () => {
+          dt.classList.toggle('active');
+          let expanded = dt.getAttribute('aria-expanded') === 'true';
+          dt.setAttribute('aria-expanded', !expanded);
+        });
+        dt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dt.click();
+          }
+        });
+      });
+
+      // 자차보험료 실시간 예상 시뮬레이터 함수
+      function calculatePremium() {
+        const carType = document.getElementById('calc_car_type').value;
+        const carValue = parseFloat(document.getElementById('calc_car_value').value);
+        const driverAge = document.getElementById('calc_age').value;
+        const deductible = document.getElementById('calc_deductible').value;
+        const safetyOptions = document.querySelectorAll('input[name="calc_safety"]:checked');
+        
+        if (!carType || isNaN(carValue) || carValue <= 0 || !driverAge || !deductible) {
+            alert("모든 입력란 및 선택 값을 확인하신 후 진행해 주세요.");
+            return;
+        }
+        
+        // 기본 요율 산정 (수입차, 전기차 여부에 따른 차등)
+        let baseRate = 0.013; // 1.3% base rate
+        if (carType === 'luxury') {
+            baseRate = 0.019;
+        } else if (carType === 'ev') {
+            baseRate = 0.017;
+        } else if (carType === 'import') {
+            baseRate = 0.024;
+        }
+        
+        let calculatedBase = carValue * 10000 * baseRate;
+        
+        // 연령 변수에 따른 정형화 멀티플라이어
+        let ageFactor = 1.0;
+        if (driverAge === '20s') {
+            ageFactor = 1.95;
+        } else if (driverAge === '30s') {
+            ageFactor = 1.0;
+        } else if (driverAge === '40s') {
+            ageFactor = 0.85;
+        } else if (driverAge === '60s') {
+            ageFactor = 1.15;
+        }
+        
+        // 자기부담금 요인 감쇄
+        let deductibleFactor = 1.0;
+        if (deductible === '30%') {
+            deductibleFactor = 0.86;
+        }
+        
+        let finalPremium = calculatedBase * ageFactor * deductibleFactor;
+        
+        // 추가 특약 체크 할인
+        let discountPct = 0;
+        safetyOptions.forEach((chk) => {
+            if (chk.value === 'blackbox') discountPct += 4;
+            if (chk.value === 'adas') discountPct += 5;
+            if (chk.value === 'mileage') discountPct += 12;
+        });
+        
+        finalPremium = finalPremium * (1 - (discountPct / 100));
+        
+        // 10원 단위 반올림 절삭
+        finalPremium = Math.round(finalPremium / 10) * 10;
+        
+        // 결과창 표시 및 값 바인딩
+        document.getElementById('calc_result_area').style.display = 'block';
+        document.getElementById('calc_res_premium').innerText = "연간 대략 " + finalPremium.toLocaleString() + " 원 선 예상";
+        
+        // 맞춤형 팁 출력
+        let adviceMsg = "입력하신 조건 분석: ";
+        if (carType === 'ev') {
+            adviceMsg += "전기차는 전용 배터리 파손 특약 가입 유무에 따라 수천만 원의 자기부담 차이가 발생하니 반드시 특약을 검토하십시오. ";
+        } else if (carType === 'import') {
+            adviceMsg += "수입차는 상대적으로 정비 공임 부품 비용이 매우 높으므로 미가입 시 엄청난 금전 타격이 따릅니다. ";
+        }
+        
+        if (driverAge === '20s') {
+            adviceMsg += "만 20대 연령은 기본 요율이 높아 부모님 지분 공동명의로 '부모님 밑으로' 가입하시는 편이 현명한 저렴한곳 찾기 전략입니다.";
+        } else {
+            adviceMsg += "현재 중장년의 경우 무사고 등급이 누적되어 다이렉트 갱신 시 최대 할인을 적용받기 좋습니다.";
+        }
+        
+        document.getElementById('calc_res_advice').innerText = adviceMsg;
+      }
+    </script>
+  
